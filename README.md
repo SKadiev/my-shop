@@ -1,6 +1,5 @@
 # My-shop
 ![npm](https://img.shields.io/npm/v/npm)
-![expressjs](https://img.shields.io/npm/v/expressjs)
 
 Shop products online
 ## Installation
