@@ -1,5 +1,5 @@
 const { nextTick } = require('process');
 
 exports.getIndex = (req, res, next) => {
-  res.render('pages/index', { title: 'Index page' });
+  res.render('pages/index', { title: process.env.APP_NAME });
 }

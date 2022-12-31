@@ -17,8 +17,6 @@ app.use(indexRoutes);
 
 app.get('*', (req, res, next) => {
   res.status(404).render('pages/404', { title: 'Page not found' });
-})
+});
 
-app.listen(8000, () => {
-  console.log('Listening on port 8000');
-})
+module.exports = app;
