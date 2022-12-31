@@ -1,8 +1,14 @@
 const express = require('express');
 const path = require('path')
 const bodyParser = require('body-parser');
+const expressLayouts = require('express-ejs-layouts');
 const app = express();
+
 const indexRoutes = require('./routes/index');
+app.use(expressLayouts)
+app.set('layout', 'layouts/index')
+app.set("layout extractScripts", true)
+
 app.set('view engine', 'ejs')
 app.set('views', 'views');
 app.use(bodyParser.urlencoded({ extended: false }))
