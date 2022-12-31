@@ -1,25 +1,26 @@
 {
-  "name": "my-shop",
-  "version": "1.0.0",
-  "description": "Online web shop for buying products",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SKadiev/my-shop.git"
-  },
-  "author": "Stojan Kadiev",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/SKadiev/my-shop/issues"
-  },
-  "homepage": "https://github.com/SKadiev/my-shop#readme",
-  "dependencies": {
-    "express": "^4.18.2"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.20"
-  }
+	"name": "my-shop",
+	"version": "1.0.0",
+	"description": "Online web shop for buying products",
+	"main": "app.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "nodemon app.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/SKadiev/my-shop.git"
+	},
+	"author": "Stojan Kadiev",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/SKadiev/my-shop/issues"
+	},
+	"homepage": "https://github.com/SKadiev/my-shop#readme",
+	"dependencies": {
+		"express": "^4.18.2"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.20"
+	}
 }
