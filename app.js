@@ -1,9 +1,12 @@
 const express = require('express');
 const path = require('path')
 const app = express();
-app.use('/static', express.static(path.join(__dirname, 'public')))
+app.set('view engine', 'ejs')
+
+app.set('views', 'views');
+app.use(express.static('public'))
 app.get('/', (req, res, next) => {
-  return res.send('<link href="/styles.css" ><h1>Test</h1>');
+  return res.render('pages/index', { title: 'Index page' });
 });
 
 app.listen(8000, () => {
