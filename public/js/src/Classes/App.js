@@ -1,6 +1,10 @@
+import WebElementWrapper from './Component/WebElementWrapper.js';
 export default class App {
   constructor() {
     this.pageTitle = this.setupTitle();
+    this.bodyWrapper = new WebElementWrapper('bodyWrapper');
+    console.log(WebElementWrapper.elementWrappersList);
+    console.log(WebElementWrapper.getById('home'));
   }
 
   setupTitle() {
