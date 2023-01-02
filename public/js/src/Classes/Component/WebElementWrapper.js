@@ -1,5 +1,8 @@
+import { StyleElementWrapper } from './StyleElementWrapper.js';
+
 export default class WebElementWrapper {
   static elementWrappersList = [];
+  styleElementWrapper;
 
   constructor(id, childElement) {
     let node;
@@ -10,6 +13,7 @@ export default class WebElementWrapper {
     }
 
     this.element = node;
+
     if (node?.textContent) {
       this.text = node.textContent;
 
@@ -32,13 +36,17 @@ export default class WebElementWrapper {
         const element = innerElements[index];
         this.populate(element);
       }
-    } 
+    }
   }
 
   populate(innerElement) {
     if (innerElement.nodeType === 1) {
       const newElement = new WebElementWrapper(innerElement.id, innerElement);
-      this.constructor.elementWrappersList.push(newElement);
+      if (innerElement.tagName === 'STYLE') {
+        const styleElementWrapper = new StyleElementWrapper(newElement);
+        styleElementWrapper.generateScopedModuleStyles();
+      } else
+        this.constructor.elementWrappersList.push(newElement);
     }
   }
 
