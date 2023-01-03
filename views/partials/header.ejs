@@ -11,12 +11,17 @@
 
         </ul>
         <div>
-            <button>
-                <a href="/login">Login</a>
-            </button>
-            <button>
-                <a href="/signup">SignUp</a>
-            </button>
+            <% if (isLoggedIn) { %>
+                
+            <% } else { %>
+                <button>
+                    <a href="/login">Login</a>
+                </button>
+                <button>
+                    <a href="/signup">SignUp</a>
+                </button>
+            <% } %>
+            
         </div>
     </div>
 </nav>

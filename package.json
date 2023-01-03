@@ -18,6 +18,7 @@
 	},
 	"homepage": "https://github.com/SKadiev/my-shop#readme",
 	"dependencies": {
+		"bcrypt": "^5.1.0",
 		"body-parser": "^1.20.1",
 		"csrf-sync": "^3.0.0",
 		"cssjson": "^2.1.3",

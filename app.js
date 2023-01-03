@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
 const { generateToken, getTokenFromRequest, getTokenFromState } = require('./utils/csrf');
 const MongoDBStore = require('express-mongodb-session')(session);
+const User = require('./User');
 
 
 const app = express();
@@ -31,6 +32,18 @@ app.use(session({
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use((req, res, next) => {
+  if (!req.session.user) {
+    return next();
+  }
+  User.findById(req.session.user._id)
+    .then(user => {
+      req.user = user;
+      next();
+    })
+    .catch(err => console.log(err));
+});
+
+app.use((req, res, next) => {
   const tokenFromState = getTokenFromState(req);
   if (tokenFromState) {
     res.locals.csrfToken = tokenFromState;
@@ -38,8 +51,8 @@ app.use((req, res, next) => {
   } else {
     const csrfToken = generateToken(req);
     res.locals.csrfToken = csrfToken;
-
   }
+  res.locals.isLoggedIn = req.session.isLoggedIn;
   next();
 });
 app.use(indexRoutes);
