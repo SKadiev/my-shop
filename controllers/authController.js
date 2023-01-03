@@ -9,6 +9,13 @@ exports.getSignUp = (req, res, next) => {
   res.render('pages/signup', { title: 'SignUp' });
 };
 
+exports.postLogout = (req, res, next) => {
+  req.session.user = null;
+  req.session.isLoggedIn = false;
+  res.redirect('/');
+};
+
+
 exports.postLogin = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
