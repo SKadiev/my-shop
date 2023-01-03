@@ -45,6 +45,8 @@ export default class WebElementWrapper {
       if (innerElement.tagName === 'STYLE') {
         const styleElementWrapper = new StyleElementWrapper(newElement);
         styleElementWrapper.generateScopedModuleStyles();
+        styleElementWrapper.styleModule();
+        styleElementWrapper.removeStyleTags();
       } else
         this.constructor.elementWrappersList.push(newElement);
     }
