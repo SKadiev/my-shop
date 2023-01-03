@@ -13,6 +13,7 @@
             <label for="password">Password</label>
             <input type="password" class="form-control" name="password" id="password" placeholder="Password">
         </div>
+        <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
         <button type="submit" class="btn btn-primary">Signup</button>
     </form>
 </div>

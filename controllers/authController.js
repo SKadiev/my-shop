@@ -7,9 +7,12 @@ exports.getSignUp = (req, res, next) => {
 };
 
 exports.postLogin = (req, res, next) => {
-  res.render('pages/login', { title: 'Login' });
+  console.log(req.body);
+  res.send(req.body)
 };
 
 exports.postSignUp = (req, res, next) => {
-  res.render('pages/signup', { title: 'SignUp' });
+  console.log(req.body);
+  res.send(req.body)
+
 };

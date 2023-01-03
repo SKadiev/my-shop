@@ -3,7 +3,9 @@ const path = require('path')
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
+const { generateToken, getTokenFromRequest, getTokenFromState } = require('./utils/csrf');
 const MongoDBStore = require('express-mongodb-session')(session);
+
 
 const app = express();
 const store = new MongoDBStore({
@@ -28,6 +30,18 @@ app.use(session({
 }));
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use((req, res, next) => {
+  const tokenFromState = getTokenFromState(req);
+  if (tokenFromState) {
+    res.locals.csrfToken = tokenFromState;
+
+  } else {
+    const csrfToken = generateToken(req);
+    res.locals.csrfToken = csrfToken;
+
+  }
+  next();
+});
 app.use(indexRoutes);
 app.use(authRoutes);
 
