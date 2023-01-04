@@ -1,15 +1,16 @@
-<div class="container col-sm-6">
+<div id="loginDiv" class="container col-sm-6">
     <%- include('../partials/auth-errors.ejs')%>
-    <form method="post" action="/login">
-        <div class="form-group">
-            <label for="email"></label>
-            <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId" placeholder="">
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-        </div>
-        <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
-        <button type="submit" class="btn btn-primary">Login</button>
-    </form>
+        <form id="loginForm" method="post" action="/login">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId"
+                    placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+            <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
+        </form>
 </div>
