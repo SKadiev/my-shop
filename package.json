@@ -5,7 +5,8 @@
 	"main": "app.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "nodemon start.js"
+		"start": "nodemon start.js",
+		"watch": "nodemon --ext *  js,html,ejs,css,scss,.env start.js"
 	},
 	"repository": {
 		"type": "git",
@@ -20,6 +21,7 @@
 	"dependencies": {
 		"bcrypt": "^5.1.0",
 		"body-parser": "^1.20.1",
+		"connect-flash": "^0.1.1",
 		"csrf-sync": "^3.0.0",
 		"cssjson": "^2.1.3",
 		"dotenv": "^16.0.3",
@@ -31,6 +33,8 @@
 		"mongoose": "^6.8.2"
 	},
 	"devDependencies": {
+		"connect-livereload": "^0.6.1",
+		"livereload": "^0.9.3",
 		"nodemon": "^2.0.20"
 	}
 }

@@ -1,14 +1,24 @@
 const express = require('express');
+const livereload = require("livereload");
+const connectLiveReload = require("connect-livereload");
 const path = require('path')
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
+const flash = require('connect-flash'); 
 const { generateToken, getTokenFromRequest, getTokenFromState } = require('./utils/csrf');
 const MongoDBStore = require('express-mongodb-session')(session);
 const User = require('./User');
-
+const liveReloadServer = livereload.createServer();
+liveReloadServer.server.once("connection", () => {
+  setTimeout(() => {
+    liveReloadServer.refresh("/");
+  }, 100);
+});
 
 const app = express();
+app.use(connectLiveReload());
+
 const store = new MongoDBStore({
   uri: process.env.DATABASE,
   collection: 'shopSessions'
@@ -29,6 +39,7 @@ app.use(session({
   saveUninitialized: false,
   store: store
 }));
+app.use(flash());
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use((req, res, next) => {

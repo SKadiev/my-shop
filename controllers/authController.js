@@ -6,7 +6,9 @@ exports.getLogin = (req, res, next) => {
 };
 
 exports.getSignUp = (req, res, next) => {
-  res.render('pages/signup', { title: 'SignUp' });
+  const signUpErrorMsg = req.flash('signUpError');
+  console.log(signUpErrorMsg.length);
+  res.render('pages/signup', { title: 'SignUp', signUpError: signUpErrorMsg });
 };
 
 exports.postLogout = (req, res, next) => {
@@ -31,7 +33,6 @@ exports.postLogin = (req, res, next) => {
 
           } else {
             return res.redirect('/login');
-
           }
         })
       }
@@ -42,18 +43,28 @@ exports.postLogin = (req, res, next) => {
 
 exports.postSignUp = (req, res, next) => {
 
-  bcrypt.hash(req.body.password, 10)
-    .then(hash => {
-      const user = new User({
-        name: req.body.name,
-        password: hash,
-        email: req.body.email,
-      })
+  User.findOne({ email: req.body.email })
+    .then(user => {
+      if (!user) {
+        bcrypt.hash(req.body.password, 10)
+          .then(hash => {
+            const user = new User({
+              name: req.body.name,
+              password: hash,
+              email: req.body.email,
+            })
 
-      user.save()
-        .then(user => {
-          console.log(user);
-          res.redirect('/');
-        })
+            user.save()
+              .then(user => {
+                console.log(user);
+                res.redirect('/');
+              })
+          })
+      } else {
+        req.flash('signUpError', 'User with this email exist');
+      }
+
+      return res.redirect('/signup');
     })
+
 };

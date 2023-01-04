@@ -1,8 +1,8 @@
 //* Start server
-
 require('dotenv').config();
 const app = require('./app');
 const mongoose = require('mongoose');
+
 mongoose.connect(process.env.Database, {
   useNewUrlParser: true,
   useUnifiedTopology: true
