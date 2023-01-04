@@ -2,13 +2,13 @@ const User = require('../User');
 const bcrypt = require('bcrypt');
 
 exports.getLogin = (req, res, next) => {
-  res.render('pages/login', { title: 'Login' });
+  const loginErrorMsg = req.flash('loginError');
+  res.render('pages/login', { title: 'Login', errorMsg: loginErrorMsg });
 };
 
 exports.getSignUp = (req, res, next) => {
   const signUpErrorMsg = req.flash('signUpError');
-  console.log(signUpErrorMsg.length);
-  res.render('pages/signup', { title: 'SignUp', signUpError: signUpErrorMsg });
+  res.render('pages/signup', { title: 'SignUp', errorMsg: signUpErrorMsg });
 };
 
 exports.postLogout = (req, res, next) => {
@@ -32,6 +32,7 @@ exports.postLogin = (req, res, next) => {
             return res.redirect('/');
 
           } else {
+            req.flash('loginError', 'Wrong email or password');
             return res.redirect('/login');
           }
         })
