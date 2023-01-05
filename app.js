@@ -5,11 +5,12 @@ const path = require('path')
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
-const flash = require('connect-flash'); 
+const flash = require('connect-flash');
 const { generateToken, getTokenFromRequest, getTokenFromState } = require('./utils/csrf');
 const MongoDBStore = require('express-mongodb-session')(session);
-const User = require('./User');
 const liveReloadServer = livereload.createServer();
+const getYear = require('./middleware/get-year');
+const User = require('./User');
 liveReloadServer.server.once("connection", () => {
   setTimeout(() => {
     liveReloadServer.refresh("/");
@@ -18,6 +19,7 @@ liveReloadServer.server.once("connection", () => {
 
 const app = express();
 app.use(connectLiveReload());
+app.use(getYear);
 
 const store = new MongoDBStore({
   uri: process.env.DATABASE,
@@ -53,6 +55,7 @@ app.use((req, res, next) => {
     })
     .catch(err => console.log(err));
 });
+
 
 app.use((req, res, next) => {
   const tokenFromState = getTokenFromState(req);
