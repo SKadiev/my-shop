@@ -1,6 +1,6 @@
-<div id="loginDiv" class="container col-sm-6">
+<div class="authDiv">
     <%- include('../partials/auth-errors.ejs')%>
-        <form id="loginForm" method="post" action="/login">
+        <form class="loginForm" method="post" action="/login">
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId"
