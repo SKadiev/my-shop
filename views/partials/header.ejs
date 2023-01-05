@@ -1,29 +1,24 @@
-
-<nav class="navbarHeader">
-    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-		</button> -->
-    <div class="collapse navbar-collapse" id="navbarMain">
-        <ul id="mainNavUl" class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
+<nav class="navbar-header">
+    <div id="navbar-main">
+        <ul id="main-nav-ul">
+            <li>
                 <a class="nav-link" href="/">Home</a>
             </li>
             <% if (isLoggedIn) { %>
-                <li class="nav-item active">
+                <li>
                     <a class="nav-link" href="/admin-products">Admin products</a>
                 </li>
 
-                <li class="nav-item active">
+                <li>
                     <a class="nav-link" href="/add-product">Add product</a>
                 </li>
 
                 <% } %>
-                    <li class="nav-item active">
+                    <li>
                         <a class="nav-link" href="/produts">Products</a>
                     </li>
         </ul>
-        <div id="authButtonsDiv">
+        <div id="auth-buttons-div">
             <% if (isLoggedIn) { %>
                 <form action="/logout" method="post">
                     <input type="hidden" name="CSRFToken" value="<%= csrfToken %>" />
