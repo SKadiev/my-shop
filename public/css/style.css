@@ -14,20 +14,19 @@ body {
 	background-color: aliceblue;
 }
 
-.navbarHeader {
+.navbar-header {
 	position: absolute;
 	width: 100%;
 	border-bottom: 0.3rem solid rgba(207, 165, 48, 0.849);
-	padding-bottom: .5rem;
+	padding-bottom: 0.5rem;
 	background-color: #f7eded;
-
 }
 
-#authButtonsDiv {
+#auth-buttons-div {
 	width: 35%;
 	padding-right: 2%;
 }
-#authButtonsDiv button {
+#auth-buttons-div button {
 	margin: 0.3rem;
 	background-color: rgba(207, 165, 48, 0.849);
 	/* background: red; */
@@ -35,11 +34,11 @@ body {
 	border-radius: 10%;
 }
 
-#authButtonsDiv a {
+#auth-buttons-div a {
 	/* padding: .5rem; */
 }
 
-.authDiv {
+.auth-div {
 	width: 25%;
 	display: block;
 	background: #f7eded;
@@ -49,24 +48,28 @@ body {
 	text-align: center;
 }
 
-#mainNavUl li {
+#main-nav-ul,
+li {
+	float: left;
+}
+
+#main-nav-ul li {
 	display: inline-block;
 	margin-left: 0;
 }
 
-#mainNavUl {
+#main-nav-ul {
 	float: left;
 	padding-left: 10%;
 }
 
-#mainNavUl,
+#main-nav-ul,
 div {
 	display: inline;
 }
-
-#mainNavUl,
-li {
-	float: left;
+#main-nav-ul 
+li:last-child {
+	margin-right: 0;
 }
 a:link {
 	text-decoration: none;
@@ -93,15 +96,15 @@ ul li {
 	margin: 0.7rem;
 }
 
-#navbarMain {
+#navbar-main {
 	display: block;
 	background-color: #f7eded;
 	height: 100%;
 	float: left;
 	width: 100%;
 }
-#navbarMain div,
-#navbarMain div button {
+#navbar-main div,
+#navbar-main div button {
 	float: right;
 }
 

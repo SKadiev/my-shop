@@ -1,4 +1,4 @@
-<div class="authDiv">
+<div class="auth-div">
     <%- include('../partials/auth-errors.ejs')%>
         <form class="loginForm" method="post" action="/login">
             <div class="form-group">
@@ -9,7 +9,7 @@
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="login-btn">Login</button>
             </div>
             <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
         </form>
