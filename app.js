@@ -10,7 +10,7 @@ const { generateToken, getTokenFromRequest, getTokenFromState } = require('./uti
 const MongoDBStore = require('express-mongodb-session')(session);
 const liveReloadServer = livereload.createServer();
 const getYear = require('./middleware/get-year');
-const User = require('./User');
+const User = require('./models/User');
 liveReloadServer.server.once("connection", () => {
   setTimeout(() => {
     liveReloadServer.refresh("/");

@@ -21,7 +21,7 @@ export class StyleElementWrapper {
     const elementTag = splitRuleAndElemenTag[0].trim();
     const rulesString = splitRuleAndElemenTag[1].trim().replace('}', '');
     const elementTagWithGeneratedClass = elementTag + '.' + cssIdClass + ' {';
-    this.styleElementTags.push({ elementTag, newClass: cssIdClass, styleRules: rulesString });
+    this.styleElementTags.push({ elementTag, newClass: cssIdClass, styleRules: rulesString, fullCss: rule });
     const ruleStyleRemainder = splitRuleAndElemenTag[1].trim();
     const newStyleWithGeneratedCssClass = elementTagWithGeneratedClass + ruleStyleRemainder;
     return newStyleWithGeneratedCssClass;
@@ -58,6 +58,9 @@ export class StyleElementWrapper {
   }
 
   isTagForStyling(element, checkTag) {
+    let parser = new cssjs();
+    let parsed = parser.parseCSS(checkTag.fullCss);
+    console.log(parsed);
     return element.nodeType === 1 && element.tagName.toLowerCase() === checkTag.elementTag && !element.getAttribute('hasBeenStyled')
   }
 

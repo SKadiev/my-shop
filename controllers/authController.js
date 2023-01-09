@@ -1,4 +1,4 @@
-const User = require('../User');
+const User = require('../models/User');
 const bcrypt = require('bcrypt');
 
 exports.getLogin = (req, res, next) => {
@@ -58,14 +58,14 @@ exports.postSignUp = (req, res, next) => {
             user.save()
               .then(user => {
                 console.log(user);
-                res.redirect('/');
+                return res.redirect('/');
               })
           })
       } else {
         req.flash('signUpError', 'User with this email exist');
+        return res.redirect('/signup');
       }
 
-      return res.redirect('/signup');
     })
 
 };

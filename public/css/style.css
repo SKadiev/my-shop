@@ -30,7 +30,9 @@ body {
 
 .main {
 	grid-area: main;
-	align-self: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 footer {
