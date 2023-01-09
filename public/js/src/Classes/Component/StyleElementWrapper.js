@@ -58,10 +58,14 @@ export class StyleElementWrapper {
   }
 
   isTagForStyling(element, checkTag) {
-    let parser = new cssjs();
-    let parsed = parser.parseCSS(checkTag.fullCss);
-    console.log(parsed);
-    return element.nodeType === 1 && element.tagName.toLowerCase() === checkTag.elementTag && !element.getAttribute('hasBeenStyled')
+    let selectorElements = checkTag.elementTag.trim().split(' ');
+    const tagExistsInRulesList = (element, elementCheckList) => {
+      if (typeof selectorElements === 'string') {
+        return element.tagName.toLowerCase() === checkTag.elementTag
+      }
+      return elementCheckList.find(i => i === element.tagName.toLowerCase());
+    };
+    return element.nodeType === 1 && tagExistsInRulesList(element, selectorElements) && !element.getAttribute('hasBeenStyled')
   }
 
   styleElementTag(element) {
