@@ -8,6 +8,8 @@ body {
 	margin: 0;
 }
 
+
+/* main element styles */
 #app {
 	height: 100vh;
 
@@ -19,8 +21,6 @@ body {
 		'main'
 		'footer';
 }
-
-/* main element styles */
 .navbar-header {
 	grid-area: header;
 	border-bottom: 0.3rem solid rgba(207, 165, 48, 0.849);
@@ -30,9 +30,8 @@ body {
 
 .main {
 	grid-area: main;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	align-self: center;
+	text-align: center;
 }
 
 footer {
