@@ -1,0 +1,15 @@
+<div class="body-container">
+  <%- include('../../partials/auth-errors.ejs')%>
+    <form class="add-product-form" method="post" action="/admin/add-product">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="name" class="form-control" name="name" id="name">
+      </div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" class="form-control" name="price" id="price" placeholder="0">
+        <button type="submit" class="add-product-btn">Add product</button>
+      </div>
+      <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
+    </form>
+</div>

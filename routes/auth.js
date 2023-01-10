@@ -1,9 +1,9 @@
 const express = require('express');
 
 const router = express.Router();
-const authController = require('../../controllers/authController');
-const { csrfSynchronisedProtection: csrf } = require('../../utils/csrf');
-const authMiddleware = require('../../middleware/is-auth');
+const authController = require('../controllers/authController');
+const { csrfSynchronisedProtection: csrf } = require('../utils/csrf');
+const authMiddleware = require('../middleware/is-auth');
 
 router.get('/login', authController.getLogin);
 
