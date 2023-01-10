@@ -14,11 +14,16 @@
 <body id="bodyWrapper">
     <div id="app">
         <%-include('../partials/header.ejs') %>
-            <div class="main"><%- body %></div>
-            <footer id="layout-footer">
-                Copyright &copy; <%= currentYear %> by My Shop
-            </footer>
-    </div>
+
+        <%-include('../partials/sidebar.ejs') %>
+            <div class="main">
+
+                <%- body %>
+                <footer id="layout-footer">
+                    Copyright &copy; <%= currentYear %> by My Shop
+                </footer>
+        </div>
+            </div>
     <script src="/js/css-parser.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
