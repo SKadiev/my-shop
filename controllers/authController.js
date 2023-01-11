@@ -2,11 +2,17 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 
 exports.getLogin = (req, res, next) => {
+  if (res.isLoggedIn) {
+    return res.redirect('/');
+  }
   const loginErrorMsg = req.flash('loginError');
   res.render('pages/login', { title: 'Login', errorMsg: loginErrorMsg });
 };
 
 exports.getSignUp = (req, res, next) => {
+  if (res.isLoggedIn) {
+    return res.redirect('/');
+  }
   const signUpErrorMsg = req.flash('signUpError');
   res.render('pages/signup', { title: 'SignUp', errorMsg: signUpErrorMsg });
 };

@@ -9,20 +9,20 @@
     </title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
+    <%-cssScripts%>
 </head>
 
 <body id="bodyWrapper">
     <div id="app">
         <%-include('../partials/header.ejs') %>
-
         <%-include('../partials/sidebar.ejs') %>
             <div class="main">
 
                 <%- body %>
-                <footer id="layout-footer">
-                    Copyright &copy; <%= currentYear %> by My Shop
-                </footer>
-        </div>
+            </div>
+            <footer id="layout-footer">
+                Copyright &copy; <%= currentYear %> by My Shop
+            </footer>
             </div>
     <script src="/js/css-parser.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

@@ -1,3 +1,9 @@
+<style scoped media="max-width: 1px">
+    footer {
+        align-self: flex-end;
+    }
+</style>
+
 <div class="auth-div body-container">
     <%- include('../partials/auth-errors.ejs')%>
         <form class="loginForm" method="post" action="/login">
@@ -14,3 +20,5 @@
             <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
         </form>
 </div>
+
+<%- contentFor('cssScripts') %>

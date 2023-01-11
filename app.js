@@ -68,6 +68,8 @@ app.use((req, res, next) => {
     res.locals.csrfToken = csrfToken;
   }
   res.locals.isLoggedIn = req.session.isLoggedIn;
+  res.isLoggedIn = req.session.isLoggedIn;
+
   next();
 });
 app.use(indexRoutes);
