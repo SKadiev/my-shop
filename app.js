@@ -69,7 +69,11 @@ app.use((req, res, next) => {
   }
   res.locals.isLoggedIn = req.session.isLoggedIn;
   res.isLoggedIn = req.session.isLoggedIn;
+  res.locals.path = req.path;
+  if(req.path !== '/login' || req.path !== '/signup') {
+    res.locals.styles = null;
 
+  }
   next();
 });
 app.use(indexRoutes);

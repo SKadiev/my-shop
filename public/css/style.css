@@ -1,4 +1,3 @@
-
 * {
 	margin: 0;
 	padding: 0;
@@ -14,8 +13,10 @@ body {
 #app {
 	height: 100vh;
 	display: grid;
+	background: #edf7f7;
 	grid-template-columns: 100px 1fr;
 	grid-template-rows: auto 1fr auto;
+	column-gap: 20px;
 	grid-template-areas:
 		'header'
 		'main'
@@ -23,10 +24,19 @@ body {
 }
 .navbar-header {
 	grid-area: header;
-	border-bottom: 0.3rem solid rgba(207, 165, 48, 0.849);
+	/* border-bottom: 0.3rem solid #edf7f7; */
+	margin-bottom: 0.3rem;
 	padding-bottom: 0.5rem;
-	background-color: #f7eded;
+	background-color: #edf7f7;
 	grid-column: 1 / -1;
+	border-bottom: 2px solid #f7eded;
+	border-radius: 10%;
+}
+
+.add-product-container {
+	display: flex;
+	justify-content: center;
+	align-content: center;
 }
 
 .main {
@@ -34,12 +44,19 @@ body {
 	text-align: center;
 	grid-column: 1 / -1;
 	grid-row: 2 / -1;
+	border-radius: 2%;
+	background: #edf7f7;
+	border: 1px solid #edf7f7;
 }
 aside {
-	background-color: #f7eded;
+	background-color: #edf7f7;
 	grid-column: 1;
 	grid-row: 2 / -1;
 	justify-items: flex-end;
+	border-right: 2px solid #f7eded;
+	border-top: 2px solid #f7eded;
+
+	border-radius: 5%;
 }
 
 footer {
@@ -52,7 +69,7 @@ footer {
 
 #auth-buttons-div button {
 	margin: 0.3rem;
-	background-color: rgba(207, 165, 48, 0.849);
+	background-color: #f7eded;
 	padding: 0.5rem;
 	border-radius: 10%;
 }
@@ -78,7 +95,7 @@ footer {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background-color: #f7eded;
+	background-color: #edf7f7;
 	margin-left: 30px;
 }
 
@@ -145,23 +162,26 @@ small,
 /*font styles*/
 
 a {
-	color: rgb(36, 8, 163);
+	color: #000;
 }
 a:link {
 	text-decoration: none;
-	color: rgb(36, 8, 163);
+	color: #000;
 }
 
 a:hover {
 	color: rgb(82, 4, 82);
-	font-size: 1.3rem;
-	/* border: 0.1rem dashed rgba(207, 165, 48, 0.849); */
+	line-height: 1.9;
+  text-decoration: underline;
 }
 
 a:active {
 	color: red;
 }
 
+button {
+	background: #f7eded;
+}
 ul {
 	list-style-type: none;
 	padding: 0;
@@ -169,7 +189,10 @@ ul {
 }
 
 ul li {
-	margin: 0.7rem;
+	margin: 0.7rem 0.3rem;
+	background: #f7eded;
+	border-radius: 10%;
+	padding: 0.3rem;
 }
 
 .form-group {
@@ -193,7 +216,7 @@ ul li {
 .form-group button {
 	margin-top: 1rem;
 	padding: 0.5rem;
-	background-color: rgba(207, 165, 48, 0.849);
+	background-color: #edf7f7;
 	color: rgb(36, 8, 163);
 	border-radius: 15%;
 }
