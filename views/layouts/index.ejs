@@ -8,22 +8,25 @@
         <%= title %>
     </title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;500;700&family=Lato:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
-    <%-cssScripts%>
 </head>
 
 <body id="bodyWrapper">
     <div id="app">
         <%-include('../partials/header.ejs') %>
-        <%-include('../partials/sidebar.ejs') %>
-            <div class="main">
+            <%-include('../partials/sidebar.ejs') %>
+                <div class="main">
 
-                <%- body %>
-            </div>
-            <footer id="layout-footer">
-                Copyright &copy; <%= currentYear %> by My Shop
-            </footer>
-            </div>
+                    <%- body %>
+                </div>
+                <footer id="layout-footer">
+                    Copyright &copy; <%= currentYear %> by My Shop
+                </footer>
+    </div>
     <script src="/js/css-parser.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
