@@ -2,20 +2,20 @@
     <div id="navbar-main">
         <ul id="main-nav-ul">
             <li>
-                <a href="/">Home</a>
+                <a class="btn" href="/">Home</a>
             </li>
             <% if (isLoggedIn) { %>
                 <li>
-                    <a href="/admin-products">Admin products</a>
+                    <a class="btn" href="/admin-products">Admin products</a>
                 </li>
 
                 <li>
-                    <a href="/admin/add-product">Add product</a>
+                    <a class="btn" href="/admin/add-product">Add product</a>
                 </li>
 
                 <% } %>
                     <li>
-                        <a href="/produts">Products</a>
+                        <a class="btn" href="/produts">Products</a>
                     </li>
         </ul>
         <div id="auth-buttons-div">
@@ -23,17 +23,13 @@
                 <form action="/logout" method="post">
                     <input type="hidden" name="CSRFToken" value="<%= csrfToken %>" />
 
-                    <button type="submit">Logout</button>
+                    <button class="btn" type="submit">Logout</button>
                 </form>
 
                 <% } else { %>
-                    <button>
-                        <a href="/login">Login</a>
-                    </button>
-                    <button>
-                        <a href="/signup">SignUp</a>
-                    </button>
-                    <% } %>
+                    <a class="btn" href="/login">Login</a>
+                    <a class="btn" href="/signup">SignUp</a>
+                <% } %>
         </div>
     </div>
 </nav>

@@ -7,8 +7,12 @@
 body {
 	padding: 0;
 	margin: 0;
+	color: #495057;
 }
 
+
+/* MAIN COLOR #087f5b */
+/* GREY COLOR #495057 */
 /* main element styles */
 #app {
 	height: 100vh;
@@ -29,7 +33,7 @@ body {
 	padding-bottom: 0.5rem;
 	background-color: #edf7f7;
 	grid-column: 1 / -1;
-	border-bottom: 2px solid #f7eded;
+	border-bottom: 2px solid #087f5b;
 	border-radius: 10%;
 }
 
@@ -53,8 +57,8 @@ aside {
 	grid-column: 1;
 	grid-row: 2 / -1;
 	justify-items: flex-end;
-	border-right: 2px solid #f7eded;
-	border-top: 2px solid #f7eded;
+	border-right: 2px solid #087f5b;
+	border-top: 2px solid #087f5b;
 
 	border-radius: 5%;
 }
@@ -69,8 +73,7 @@ footer {
 
 #auth-buttons-div button {
 	margin: 0.3rem;
-	background-color: #f7eded;
-	padding: 0.5rem;
+	/* padding: 0.5rem; */
 	border-radius: 10%;
 }
 
@@ -86,9 +89,10 @@ footer {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background: #f7eded;
+	/* background: #087f5b; */
 	margin-top: 1rem;
 	border-radius: 10%;
+	border: 1px solid #087f5b;
 }
 
 #navbar-main {
@@ -116,7 +120,6 @@ body {
 	font-family: 'Inter', sans-serif;
 	font-weight: 400;
 	line-height: 1.75;
-	color: #000000;
 }
 
 p {
@@ -161,27 +164,11 @@ small,
 }
 /*font styles*/
 
-a {
-	color: #000;
-}
-a:link {
+
+.btn:link, .btn:visited {
 	text-decoration: none;
-	color: #000;
 }
 
-a:hover {
-	color: rgb(82, 4, 82);
-	line-height: 1.9;
-  text-decoration: underline;
-}
-
-a:active {
-	color: red;
-}
-
-button {
-	background: #f7eded;
-}
 ul {
 	list-style-type: none;
 	padding: 0;
@@ -190,9 +177,19 @@ ul {
 
 ul li {
 	margin: 0.7rem 0.3rem;
-	background: #f7eded;
+	background: #087f5b;
+	color: #fff;
 	border-radius: 10%;
-	padding: 0.3rem;
+}
+
+.btn {	
+	background: #087f5b;
+	text-transform: uppercase;
+	color: #fff;
+	padding: 16px 32px;
+	font-weight: 500;
+	border-radius: 15px;
+	font-size: 18px;
 }
 
 .form-group {
@@ -214,9 +211,7 @@ ul li {
 	outline: none;
 }
 .form-group button {
-	margin-top: 1rem;
-	padding: 0.5rem;
-	background-color: #edf7f7;
-	color: rgb(36, 8, 163);
+	color: #fff;
+	margin-top: 10px;
 	border-radius: 15%;
 }
