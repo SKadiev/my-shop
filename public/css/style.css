@@ -7,9 +7,8 @@
 body {
 	padding: 0;
 	margin: 0;
-	color: #495057;
+	color: #343a40;
 }
-
 
 /* MAIN COLOR #087f5b */
 /* GREY COLOR #495057 */
@@ -28,7 +27,6 @@ body {
 }
 .navbar-header {
 	grid-area: header;
-	/* border-bottom: 0.3rem solid #edf7f7; */
 	margin-bottom: 0.3rem;
 	padding-bottom: 0.5rem;
 	background-color: #edf7f7;
@@ -59,22 +57,24 @@ aside {
 	justify-items: flex-end;
 	border-right: 2px solid #087f5b;
 	border-top: 2px solid #087f5b;
-
 	border-radius: 5%;
 }
 
 footer {
+	color: #495057;
 	grid-area: footer;
 	grid-column: 1 / -1;
-	/* grid-row: -2/ -1; */
 	text-align: center;
 	align-content: center;
 }
 
-#auth-buttons-div button {
+#auth-buttons-div a {
 	margin: 0.3rem;
-	/* padding: 0.5rem; */
-	border-radius: 10%;
+
+}
+
+section .homePageLogo {
+	justify-self: center;
 }
 
 .auth-div {
@@ -107,6 +107,15 @@ footer {
 	display: flex;
 	justify-content: center;
 }
+
+/* grid utils styles */
+.col-row-2 {
+	display: grid;
+	grid-template-rows: 1fr 1fr;
+}
+
+
+/* grid utils styles */
 
 /* main element styles */
 
@@ -163,10 +172,29 @@ small,
 	font-size: 0.8rem;
 }
 /*font styles*/
+/* element component style */
+.btn {
+	background: #087f5b;
+	text-transform: uppercase;
+	color: #fff;
+	font-weight: 500;
+	border-radius: 15px;
+	margin-top: 10px;
+}
 
+.btn--big {
+	font-size: 18px;
+	padding: 16px 32px;
+}
 
-.btn:link, .btn:visited {
-	text-decoration: none;
+.btn--small {
+	font-size: 14px;
+	padding: 8px 12px;
+}
+
+.btn:active,
+.btn:hover {
+	background: #099268;
 }
 
 ul {
@@ -177,21 +205,15 @@ ul {
 
 ul li {
 	margin: 0.7rem 0.3rem;
-	background: #087f5b;
 	color: #fff;
 	border-radius: 10%;
 }
+/* element component styles */
 
-.btn {	
-	background: #087f5b;
-	text-transform: uppercase;
-	color: #fff;
-	padding: 16px 32px;
-	font-weight: 500;
-	border-radius: 15px;
-	font-size: 18px;
+/* component styles */
+section img {
+	align-self:center;
 }
-
 .form-group {
 	margin: 0.2rem;
 	text-align: center;
@@ -215,3 +237,4 @@ ul li {
 	margin-top: 10px;
 	border-radius: 15%;
 }
+/* component styles */

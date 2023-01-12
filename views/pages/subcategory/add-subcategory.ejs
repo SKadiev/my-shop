@@ -1,6 +1,6 @@
-<div class="add-product-container">
+<div class="add-subcategory-container">
   <%- include('../../partials/auth-errors.ejs')%>
-    <form class="add-product-form" method="post" action="/admin/add-product">
+    <form class="add-subcategory-form" method="post" action="/admin/add-subcategory">
       <div class="form-group">
         <label for="name">Name</label>
         <input type="name" class="form-control" name="name" id="name">
@@ -8,8 +8,8 @@
       <div class="form-group">
         <label for="price">Price</label>
         <input type="number" class="form-control" name="price" id="price" placeholder="0">
+        <button type="submit" class="add-subcategory-btn">Add subcategory</button>
       </div>
-      <button type="submit" class="btn btn--big add-product-btn">Add product</button>
       <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
     </form>
 </div>

@@ -1,0 +1,12 @@
+<div class="add-category-container">
+  <%- include('../../partials/auth-errors.ejs')%>
+    <form class="add-category-form" method="post" action="/admin/add-category">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="name" class="form-control" name="name" id="name">
+      </div>
+     
+      <button type="submit" class="btn btn--big add-category-btn">Add category</button>
+      <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
+    </form>
+</div>

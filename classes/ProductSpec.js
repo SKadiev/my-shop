@@ -1,9 +1,12 @@
 class ProductSpec {
-  category;
   model;
+  productCategory;
+  builder;
 
-  search(ProductSpec: spec) {
-
+  constructor(productSpecObj) {
+    this.model = productSpecObj.model;
+    this.productCategory = productSpecObj.productCategory;
+    this.builder = productSpecObj.builder;
   }
 }
 

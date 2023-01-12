@@ -4,3 +4,8 @@ exports.getIndex = (req, res, next) => {
 }
 
 
+exports.getProducts = (req, res, next) => {
+  console.log(req.session);
+  res.render('pages/product/products', { title: 'Products' });
+}
+
