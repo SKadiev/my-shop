@@ -1,4 +1,5 @@
-<div class=" form-crud-container add-builder-container">
+<%- include('../../partials/entities-header.ejs') %> 
+<div class="form-crud-container add-builder-container">
   <form class="add-builder-form" method="post" action="/admin/add-builder">
     <%- include('../../partials/auth-errors.ejs')%>
     <label for="name">Name</label>

@@ -43,11 +43,12 @@ body {
 	align-content: center;
 }
 .form-crud-container form {
-	display: flex;
-	flex-direction: column;
+
 }
 
 .main {
+	display: grid;
+	/* grid-template-rows: 1fr ; */
 	grid-area: main;
 	text-align: center;
 	grid-column: 2 / -1;
@@ -220,6 +221,17 @@ ul li {
 .error-msg {
 	color: red;
 }
+.go-back-admin-products-btn  {
+	width: initial;
+	margin-right: 10px;
+}
+
+.admin-actions-list {
+	display: flex;
+}
+.admin-actions-list li {
+	margin-top: 0;
+}
 /* element component styles */
 
 /* component styles */
@@ -255,5 +267,11 @@ section img {
 	color: #fff;
 	margin-top: 10px;
 	border-radius: 15%;
+}
+
+.admin-actions {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
 }
 /* component styles */
