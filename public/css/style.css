@@ -1,3 +1,4 @@
+/* Global style */
 * {
 	margin: 0;
 	padding: 0;
@@ -9,15 +10,16 @@ body {
 	margin: 0;
 	color: #343a40;
 }
+/* Global style */
 
 /* MAIN COLOR #087f5b */
-/* GREY COLOR #495057 */
+/* GREY COLOR #edf7f7 */
 /* main element styles */
 #app {
 	height: 100vh;
 	display: grid;
 	background: #edf7f7;
-	grid-template-columns: 1fr 5fr;
+	grid-template-columns: 1fr 7fr;
 	grid-template-rows: auto 1fr auto;
 	column-gap: 20px;
 	grid-template-areas:
@@ -48,7 +50,7 @@ body {
 .main {
 	grid-area: main;
 	text-align: center;
-	grid-column: 1 / -1;
+	grid-column: 2 / -1;
 	grid-row: 2 / -1;
 	border-radius: 2%;
 	background: #edf7f7;
@@ -214,9 +216,20 @@ ul li {
 	color: #fff;
 	border-radius: 10%;
 }
+
+.error-msg {
+	color: red;
+}
 /* element component styles */
 
 /* component styles */
+
+#auth-buttons-div {
+	display: flex;
+	margin: 0 10px;
+	align-items: baseline;
+	justify-content: space-between;
+}
 section img {
 	align-self: center;
 }

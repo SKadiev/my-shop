@@ -1,0 +1,10 @@
+.main {
+  grid-column: 1 / -1;
+  align-self: center;
+
+}
+
+.authForm {
+  padding: 32px 16px;
+  flex: 2 0 auto;
+}

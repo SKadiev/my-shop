@@ -5,9 +5,9 @@
 </style>
 
 <div class="auth-div body-container">
-    <%- include('../partials/auth-errors.ejs')%>
-        <form class="loginForm" method="post" action="/login">
-            <div class="form-group">
+    <form class="loginForm authForm" method="post" action="/login">
+        <div class="form-group">
+                <%- include('../partials/auth-errors.ejs')%>
                 <label for="email">Email</label>
                 <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId"
                     placeholder="">
@@ -20,5 +20,5 @@
             <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
         </form>
 </div>
-
-
+<%- contentFor('styles') %>
+    <link rel="stylesheet" href="/css/authform.css">

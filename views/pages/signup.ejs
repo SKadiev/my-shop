@@ -1,7 +1,7 @@
 <div class="auth-div body-container">
-	<%- include('../partials/auth-errors.ejs')%>
-		<form class method="post" action="/signUp">
-			<div class="form-group">
+	<form class="signUpForm authForm" method="post" action="/signUp">
+		<div class="form-group">
+				<%- include('../partials/auth-errors.ejs')%>
 				<label for="name">Name</label>
 				<input type="text" class="form-control" name="name" id="name" placeholder="Username" />
 			</div>
@@ -19,3 +19,5 @@
 		</form>
 </div>
 
+<%- contentFor('styles') %>
+	<link rel="stylesheet" href="/css/authform.css">
