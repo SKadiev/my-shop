@@ -17,7 +17,7 @@ body {
 	height: 100vh;
 	display: grid;
 	background: #edf7f7;
-	grid-template-columns: 100px 1fr;
+	grid-template-columns: 1fr 5fr;
 	grid-template-rows: auto 1fr auto;
 	column-gap: 20px;
 	grid-template-areas:
@@ -35,10 +35,14 @@ body {
 	border-radius: 10%;
 }
 
-.add-product-container {
+.form-crud-container {
 	display: flex;
 	justify-content: center;
 	align-content: center;
+}
+.form-crud-container form {
+	display: flex;
+	flex-direction: column;
 }
 
 .main {
@@ -70,7 +74,6 @@ footer {
 
 #auth-buttons-div a {
 	margin: 0.3rem;
-
 }
 
 section .homePageLogo {
@@ -79,6 +82,7 @@ section .homePageLogo {
 
 .auth-div {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
@@ -98,7 +102,7 @@ section .homePageLogo {
 #navbar-main {
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
+	align-items: baseline;
 	background-color: #edf7f7;
 	margin-left: 30px;
 }
@@ -113,7 +117,6 @@ section .homePageLogo {
 	display: grid;
 	grid-template-rows: 1fr 1fr;
 }
-
 
 /* grid utils styles */
 
@@ -180,6 +183,9 @@ small,
 	font-weight: 500;
 	border-radius: 15px;
 	margin-top: 10px;
+	white-space: nowrap;
+	text-align: center;
+	width: 100%;
 }
 
 .btn--big {
@@ -212,7 +218,7 @@ ul li {
 
 /* component styles */
 section img {
-	align-self:center;
+	align-self: center;
 }
 .form-group {
 	margin: 0.2rem;

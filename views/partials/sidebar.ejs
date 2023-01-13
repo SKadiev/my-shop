@@ -1,17 +1,20 @@
-<% if (isLoggedIn) { %> 
+<% if (isLoggedIn) { %>
   <aside>
     <nav>
       <ul class="category-list">
-        <button class="btn btn--small">
-          <li>tote</li>
-        </button>
-        <button class="btn btn--small">
-          <li>tote</li>
-        </button>
-        <button class="btn btn--small">
-          <li>tote</li>
-        </button>
+        <li>
+          <a class="btn btn--big" href="/admin/add-category">Category</a>
+        </li>
+
+        <li>
+          <a class="btn btn--big" href="/admin/add-subcategory">SubCategory</a>
+        </li>
+
+        <li>
+          <a class="btn btn--big" href="/admin/add-builder">Builder</a>
+        </li>
+
       </ul>
     </nav>
   </aside>
-<% } %>
+  <% } %>
