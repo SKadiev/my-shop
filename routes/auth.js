@@ -7,13 +7,20 @@ const authMiddleware = require('../middleware/is-auth');
 const { body, validationResult } = require('express-validator');
 
 router.get('/login', authController.getLogin);
-
-router.post('/login', csrf, authController.postLogin);
-
-router.post('/logout', csrf, authController.postLogout);
-
 router.get('/signup', authController.getSignUp);
 
+router.post('/login',
+  csrf,
+  body('email')
+    .isEmail().
+    normalizeEmail()
+    .withMessage('Must supply email'),
+  body('password')
+    .isLength({ min: 6 })
+    .withMessage('Password must be at least 6 chars long'),
+  authController.postLogin
+);
+router.post('/logout', csrf, authController.postLogout);
 router.post(
   '/signup',
   csrf,
@@ -25,9 +32,9 @@ router.post(
       }
     });
   }),
-  body('name').isLength({ min: 5 }).trim().escape().withMessage('Name must be at least 5 chars long'),
-  body('password').isLength({ min: 5 }).withMessage('Password must be at least 5 chars long'),
-  body('password_confirmation').custom((value, { req }) => {
+  body('name').notEmpty().isLength({ min: 6 }).trim().escape().withMessage('Name must be at least 6 chars long'),
+  body('password').notEmpty().isLength({ min: 6 }).withMessage('Password must be at least 6 chars long'),
+  body('password_confirmation').notEmpty().custom((value, { req }) => {
     if (value !== req.body.password) {
       throw new Error('Password confirmation does not match password');
     }
