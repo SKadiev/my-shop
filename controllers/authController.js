@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const { body, validationResult } = require('express-validator');
-const validationErrorMessage = require('../utils/validationErrorMessage'); 
+const isValidationPassed = require('../utils/isValidationPassed');
 exports.getLogin = (req, res, next) => {
   if (res.isLoggedIn) {
     return res.redirect('/');
@@ -26,38 +26,35 @@ exports.postLogout = (req, res, next) => {
 
 
 exports.postLogin = (req, res, next) => {
-  const email = req.body.email;
-  const password = req.body.password;
+  if (isValidationPassed(req)) {
+    const email = req.body.email;
+    const password = req.body.password;
 
-  User.findOne({ email: email })
-    .then(user => {
-      if (user) {
-        bcrypt.compare(password, user.password).then(function (result) {
-          if (result) {
-            req.session.user = user;
-            req.session.isLoggedIn = true;
-            return res.redirect('/');
+    User.findOne({ email: email })
+      .then(user => {
+        if (user) {
+          bcrypt.compare(password, user.password).then(function (result) {
+            if (result) {
+              req.session.user = user;
+              req.session.isLoggedIn = true;
+              return res.redirect('/');
 
-          } else {
-            req.flash('loginError', 'Wrong email or password');
-            return res.redirect('/login');
-          }
-        })
-      }
+            } else {
+              req.flash('errorMsg', 'Wrong email or password');
+              return res.redirect('/login');
+            }
+          })
+        }
+      });
+  } else {
+    return res.redirect('/login');
 
-
-    });
+  }
 };
 
 exports.postSignUp = (req, res, next) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    req.flash('errorMsg', validationErrorMessage(errors.array()));
-    return res.redirect('/signup');
-  }
-
-
-  User.findOne({ email: req.body.email })
+  if (isValidationPassed(req)) {
+    User.findOne({ email: req.body.email })
     .then(user => {
       if (!user) {
         bcrypt.hash(req.body.password, 10)
@@ -80,5 +77,8 @@ exports.postSignUp = (req, res, next) => {
       }
 
     })
+  } else {
+    return res.redirect('/signup');
 
+  }
 };

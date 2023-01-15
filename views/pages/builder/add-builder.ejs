@@ -1,7 +1,7 @@
 <%- include('../../partials/entities-header.ejs') %> 
 <div class="form-crud-container add-builder-container">
-  <%- include('../../partials/auth-errors.ejs')%>
   <form class="add-builder-form" method="post" action="/admin/add-builder">
+    <%- include('../../partials/auth-errors.ejs')%>
     <label for="name">Name</label>
     <div class="form-group">
       <input type="name" class="form-control" name="name" id="name">
