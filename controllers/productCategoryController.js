@@ -7,7 +7,8 @@ exports.getAddCategory = (req, res, next) => {
 exports.postAddCategory = (req, res, next) => {
   if (!req.body.name) {
     req.flash('errorMsg', 'Empty field name');
-    res.redirect('back');
+    return res.redirect('back');
+    ;
 
   }
   const productCategory = new ProductCategory({
@@ -20,6 +21,7 @@ exports.postAddCategory = (req, res, next) => {
     .catch(err => {
       console.log(err);
       req.flash('errorMsg', 'Error creating product category');
+      return res.redirect('back');
 
     });
 };

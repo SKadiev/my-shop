@@ -6,6 +6,7 @@ const { csrfSynchronisedProtection: csrf } = require('../../utils/csrf');
 const authMiddleware = require('../../middleware/is-auth');
 
 router.get('/add-product', productController.getAddProduct);
+router.post('/add-product', productController.postAddProduct);
 router.get('/products', productController.getAdminProducts);
 
 module.exports = router;
