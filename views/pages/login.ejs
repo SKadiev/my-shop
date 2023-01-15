@@ -6,8 +6,8 @@
 
 <div class="auth-div body-container">
     <form class="loginForm authForm" method="post" action="/login">
+        <%- include('../partials/auth-errors.ejs')%>
         <div class="form-group">
-                <%- include('../partials/auth-errors.ejs')%>
                 <label for="email">Email</label>
                 <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId"
                     placeholder="">
@@ -15,8 +15,8 @@
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-                <button type="submit" class="login-btn btn">Login</button>
             </div>
+            <button type="submit" class="login-btn btn">Login</button>
             <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
         </form>
 </div>

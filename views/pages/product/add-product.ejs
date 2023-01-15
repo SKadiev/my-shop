@@ -1,8 +1,8 @@
 <%- include('../../partials/entities-header.ejs') %> 
 <div class="form-crud-container add-product-container">
   <form class="add-product-form" method="post" action="/admin/add-product">
+    <%- include('../../partials/auth-errors.ejs')%>
     <div class="form-group">
-      <%- include('../../partials/auth-errors.ejs')%>
         <label for="name">Name</label>
         <input type="name" class="form-control" name="name" id="name">
       </div>

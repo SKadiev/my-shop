@@ -289,4 +289,26 @@ section img {
 	justify-content: space-between;
 	align-items: flex-start;
 }
+
+.products-list {
+	display: flex;
+	gap: 20px;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.product-card {
+	background: #087f5b;
+	border-radius: 15%;
+	align-self: flex-start;
+	justify-self: flex-start;
+	padding: 16px 32px;
+	
+}
+
+.product-info-card {
+	justify-self: center;
+	align-self: center;
+	flex: 2 0 auto;
+}
 /* component styles */

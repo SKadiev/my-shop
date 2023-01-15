@@ -1,1 +1,18 @@
 <div>Products </div>
+
+<ul class="products-list">
+<% for( let productIndex = 0; productIndex < products.length; productIndex++ ) { %>
+    <%let product = products[productIndex];%>
+    <li >
+      <div class="card product-card " style="width: 18rem;">
+        <img class="card-img-top" src="/images/laptop.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"><%= product.name  %></h5>
+          <p class="card-text">Some quick example .</p>
+          <a href="<%= 'product/' +  product.id %> " class="btn btn--large">Go somewhere</a>
+        </div>
+      </div>
+    
+    </li>
+    <% } %>
+  </div>

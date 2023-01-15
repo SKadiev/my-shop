@@ -27,7 +27,7 @@ exports.postAddProduct = (req, res, next) => {
   });
   product.save()
     .then(product => {
-      res.redirect('/');
+      res.redirect('/products');
     })
     .catch(err => {
       console.log(err);
@@ -40,5 +40,19 @@ exports.postAddProduct = (req, res, next) => {
 exports.getAdminProducts = (req, res, next) => {
   const errorMsg = req.flash('errorMsg');
   res.render('pages/product/admin-products', { title: 'Admin products', errorMsg });
+};
+
+
+
+exports.getProductInfo = (req, res, next) => {
+  const errorMsg = req.flash('errorMsg');
+  Product.findById(req.params.id)
+    .then(product => {
+      
+      res.render('pages/product/product', { title: 'Product info', errorMsg, product });
+    })
+    .catch(err => {
+      console.log(err);
+    })
 };
 

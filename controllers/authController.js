@@ -1,11 +1,12 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
-
+const { body, validationResult } = require('express-validator');
+const validationErrorMessage = require('../utils/validationErrorMessage'); 
 exports.getLogin = (req, res, next) => {
   if (res.isLoggedIn) {
     return res.redirect('/');
   }
-  const loginErrorMsg = req.flash('loginError');
+  const loginErrorMsg = req.flash('errorMsg');
   res.render('pages/login', { title: 'Login', errorMsg: loginErrorMsg });
 };
 
@@ -13,7 +14,7 @@ exports.getSignUp = (req, res, next) => {
   if (res.isLoggedIn) {
     return res.redirect('/');
   }
-  const signUpErrorMsg = req.flash('signUpError');
+  const signUpErrorMsg = req.flash('errorMsg');
   res.render('pages/signup', { title: 'SignUp', errorMsg: signUpErrorMsg });
 };
 
@@ -49,6 +50,12 @@ exports.postLogin = (req, res, next) => {
 };
 
 exports.postSignUp = (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    req.flash('errorMsg', validationErrorMessage(errors.array()));
+    return res.redirect('/signup');
+  }
+
 
   User.findOne({ email: req.body.email })
     .then(user => {
@@ -68,7 +75,7 @@ exports.postSignUp = (req, res, next) => {
               })
           })
       } else {
-        req.flash('signUpError', 'User with this email exist');
+        req.flash('errorMsg', 'User with this email exist');
         return res.redirect('/signup');
       }
 

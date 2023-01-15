@@ -27,9 +27,6 @@ const store = new MongoDBStore({
   collection: 'shopSessions'
 });
 
-// const indexRoutes = require('./routes/shop/index');
-// const authRoutes = require('./routes/auth');
-// const productRoutes = require('./routes/admin/product');
 app.use(expressLayouts)
 app.set('layout', 'layouts/index')
 app.set("layout extractScripts", true)
@@ -79,9 +76,6 @@ app.use((req, res, next) => {
 });
 
 initRoutes(app);
-// app.use(indexRoutes);
-// app.use(authRoutes);
-// app.use('/admin', productRoutes);
 
 app.get('*', (req, res, next) => {
   res.status(404).render('pages/404', { title: 'Page not found' });
