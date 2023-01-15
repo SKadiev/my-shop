@@ -6,8 +6,9 @@ exports.getLogin = (req, res, next) => {
   if (res.isLoggedIn) {
     return res.redirect('/');
   }
+
   const loginErrorMsg = req.flash('errorMsg');
-  res.render('pages/login', { title: 'Login', errorMsg: loginErrorMsg });
+  res.render('pages/login', { title: 'Login', errorMsg: loginErrorMsg, oldInput: { name: '', password: '', confirmPassword: '' } });
 };
 
 exports.getSignUp = (req, res, next) => {
@@ -29,7 +30,6 @@ exports.postLogin = (req, res, next) => {
   if (isValidationPassed(req)) {
     const email = req.body.email;
     const password = req.body.password;
-
     User.findOne({ email: email })
       .then(user => {
         if (user) {
@@ -44,41 +44,43 @@ exports.postLogin = (req, res, next) => {
               return res.redirect('/login');
             }
           })
+        } else {
+          req.flash('errorMsg', 'User or password don"t exists');
+          return res.status(422).render('pages/login', {
+            title: 'Login', errorMsg: 'User or password don"t exists', oldInput: {
+              email: req.body.email, password: req.body.password, confirmPassword: req.body.confirmPassword
+            }
+          });
         }
       });
   } else {
-    return res.redirect('/login');
-
+    const loginErrorMsg = req.flash('errorMsg');
+    return res.status(422).render('pages/login', {
+      title: 'Login', errorMsg: loginErrorMsg, oldInput: {
+        email: req.body.email, password: req.body.password, confirmPassword: req.body.confirmPassword
+      }
+    });
   }
 };
 
 exports.postSignUp = (req, res, next) => {
   if (isValidationPassed(req)) {
-    User.findOne({ email: req.body.email })
-    .then(user => {
-      if (!user) {
-        bcrypt.hash(req.body.password, 10)
-          .then(hash => {
-            const user = new User({
-              name: req.body.name,
-              password: hash,
-              email: req.body.email,
-            })
+    bcrypt.hash(req.body.password, 10)
+      .then(hash => {
+        const user = new User({
+          name: req.body.name,
+          password: hash,
+          email: req.body.email,
+        })
 
-            user.save()
-              .then(user => {
-                console.log(user);
-                return res.redirect('/');
-              })
+        user.save()
+          .then(user => {
+            console.log(user);
+            return res.redirect('/');
           })
-      } else {
-        req.flash('errorMsg', 'User with this email exist');
-        return res.redirect('/signup');
-      }
-
-    })
+      })
   } else {
     return res.redirect('/signup');
-
   }
+
 };

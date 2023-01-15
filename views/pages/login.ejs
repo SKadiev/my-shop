@@ -9,12 +9,12 @@
         <%- include('../partials/auth-errors.ejs')%>
         <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId"
+                <input type="email" class="form-control" name="email" id="email" value="<%= oldInput.email%>" aria-describedby="emailHelpId"
                     placeholder="">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                <input type="password" class="form-control" name="password" id="password"  value="<%= oldInput.password%>" placeholder="Password">
             </div>
             <button type="submit" class="login-btn btn">Login</button>
             <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
