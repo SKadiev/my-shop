@@ -14,7 +14,7 @@ exports.getLogin = (req, res, next) => {
 
   const loginErrorMsg = req.flash('errorMsg');
   const oldInput = req.flash('oldInput');
-
+  const validationErrors = req.flash('validationErrors');
   res.render('pages/login',
     {
       title: 'Login', errorMsg: loginErrorMsg,
@@ -23,7 +23,8 @@ exports.getLogin = (req, res, next) => {
         email: oldInput[0]?.email,
         password: oldInput[0]?.password,
         confirmPassword: oldInput[0]?.confirmPassword
-      }
+      },
+      validationErrors
     });
 };
 
@@ -33,6 +34,7 @@ exports.getSignUp = (req, res, next) => {
   }
   const signUpErrorMsg = req.flash('errorMsg');
   const oldInput = req.flash('oldInput');
+  const validationErrors = req.flash('validationErrors');
 
   res.render('pages/signup', {
     title: 'SignUp', errorMsg: signUpErrorMsg, oldInput: {
@@ -40,7 +42,8 @@ exports.getSignUp = (req, res, next) => {
       email: oldInput[0]?.email,
       password: oldInput[0]?.password,
       confirmPassword: oldInput[0]?.confirmPassword
-    }
+    },
+    validationErrors
   })
 
 };
@@ -79,11 +82,12 @@ exports.postLogin = (req, res, next) => {
           req.flash('oldInput', {
             email: req.body.email, password: req.body.password, confirmPassword: req.body.confirmPassword
           });
+          console.log(req.flash('validationErrors'));
           return res.redirect('/login');
         }
       });
   } else {
-    return res.redirect('/signup');
+    return res.redirect('/login');
   }
 };
 
@@ -99,7 +103,6 @@ exports.postSignUp = (req, res, next) => {
 
         user.save()
           .then(user => {
-            console.log(user);
             resetOldInputForm(req);
             return res.redirect('/');
           })
@@ -107,7 +110,8 @@ exports.postSignUp = (req, res, next) => {
   } else {
     req.flash('oldInput', {
       email: req.body.email, name: req.body.name, password: req.body.password, confirmPassword: req.body.password_confirmation
-    })
+    });
+
     return res.redirect('/signup');
   }
 

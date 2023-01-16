@@ -1,22 +1,43 @@
 <div class="auth-div body-container">
-	<form class="signUpForm authForm" method="post" action="/signUp">
+	<form class="signUpForm authForm needs-validation" method="post" action="/signUp" novalidate>
 		<%- include('../partials/auth-errors.ejs')%>
 		<div class="form-group">
 				<label for="name">Name</label>
-				<input type="text" class="form-control" name="name" id="name" placeholder="Username" value="<%= oldInput.name %>" />
+				<input type="text" class="form-control <%= validationErrors.find(e => e.param ==='name') ? 'is-invalid' : ''%>"
+					name="name" id="name" placeholder="Username" value="<%= oldInput.name %>" required />
+				<div class="invalid-feedback">
+					<% let errorName = validationErrors.find(e=> e.param === 'name') ; %>
+					<%= errorName ? errorName.msg : 'Please choose a  correct name'%>
+				</div>
 			</div>
 			<div class="form-group">
 				<label for="email"></label>
-				<input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId"
-					placeholder="" value="<%= oldInput.email %>" />
+				<input type="email" class="form-control <%= validationErrors.find(e => e.param ==='email') ? 'is-invalid' : ''%>"
+					name="email" id="email" placeholder="" value="<%= oldInput.email %>" required />
+				<div class="invalid-feedback">
+					<% let errorEmail = validationErrors.find(e => e.param === 'email') ; %>
+						<%= errorEmail ? errorEmail.msg : 'Please choose a  correct email' %>
+				</div>
 			</div>
 			<div class="form-group">
 				<label for="password">Password</label>
-				<input type="password" class="form-control" name="password" id="password" placeholder="Password"  value="<%= oldInput.password %>"/>
+				<input type="password" class="form-control <%= validationErrors.find(e => e.param === 'password') ? 'is-invalid' : ''%>"
+					name="password" id="password" placeholder="Password" value="<%= oldInput.password %>" required />
+				<div class="invalid-feedback">
+					<% let errorPassword =validationErrors.find(e => e.param === 'password') ; %>
+						<%= errorPassword ? errorPassword.msg : 'Please choose a  correct password' %>
+				</div>
 			</div>
 			<div class="form-group">
 				<label for="password_confirmation">Confirm Password</label>
-				<input type="password" class="form-control" value="<%= oldInput.confirmPassword %>" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password"   />
+				<input type="password"
+					class="form-control <%= validationErrors.find(e => e.param ==='password_confirmation') ? 'is-invalid' : ''%>"
+					value="<%= oldInput.confirmPassword %>" name="password_confirmation" id="password_confirmation"
+					placeholder="Confirm Password" required />
+				<div class="invalid-feedback">
+					<% let errorConfirm =validationErrors.find(e => e.param === 'password_confirmation') ; %>
+					<%= errorConfirm ? errorConfirm.msg : 'Please choose a  correct  confirm Password' %>					
+				</div>
 			</div>
 			<button type="submit" class="btn signup-btn">Signup</button>
 			<input type="hidden" name="CSRFToken" value="<%= csrfToken %>" />

@@ -16,7 +16,7 @@
       </div>
       <div class="form-group product-category-select">
         <label for="price">Product category</label>
-        <select name="product_category">
+        <select class="product_category" name="product_category">
           <% productCategories.forEach(category => { %>
             <option value="<%=category._id %>"> <%= category.name  %> </option>
           <% }) %>

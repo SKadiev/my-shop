@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator');
 
-module.exports = (req,) => {
+module.exports = (req) => {
   let errorMsg = '';
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -9,11 +9,10 @@ module.exports = (req,) => {
       errorMsg += error.msg + '<br>';
     });
     req.flash('errorMsg', errorMsg);
+    req.flash('validationErrors', errorList);
     return false;
-  }
-
+  } 
   return true;
-
 }
 
 
