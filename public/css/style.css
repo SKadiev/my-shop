@@ -306,6 +306,8 @@ section img {
 	
 }
 
+
+
 .product-info-card {
 	justify-self: center;
 	align-self: center;
@@ -314,5 +316,8 @@ section img {
 
 .product_category {
 	text-align: center;
+}
+.forgot-password-form {
+	border: none !important;
 }
 /* component styles */
