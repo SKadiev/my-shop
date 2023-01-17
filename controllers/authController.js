@@ -4,6 +4,7 @@ const { body, validationResult } = require('express-validator');
 const isValidationPassed = require('../utils/isValidationPassed');
 const nodemailer = require('nodemailer');
 const sgTransport = require('nodemailer-sendgrid-transport');
+const isResetTokenValid = require('../utils/isResetTokenValid'); 
 const { v4: uuidv4 } = require('uuid');
 
 const resetOldInputForm = (req) => {
@@ -78,15 +79,14 @@ exports.postForgotPassword = (req, res, next) => {
     if (err) {
       console.log(err);
     } else {
-      req.session.resetPasswordToken = {forgotPasswordToken};
-      console.log(result);
+      req.session.resetPasswordToken = {forgotPasswordToken, expires: Date.now()};
     }
   })
   return res.redirect('/login');
 };
 
 exports.resetPassword = (req, res, next) => {
-  if (req.params.token !== req.session.resetPasswordToken) {
+  if (!isResetTokenValid()) {
     return res.redirect('/');
   }
   const errorMsg = req.flash('errorMsg');
