@@ -114,19 +114,19 @@ exports.postSignUp = (req, res, next) => {
         user.save()
           .then(user => {
             resetOldInputForm(req);
-             mailer.sendMail({
-                to: user.email,
-                from: 'alt.r7-5oj3z2c2@yopmail.com',
-                subject: 'Thank you for signing in my shop',
-                text: 'Thank you for signing in my shop',
-                html: '<b>Enjoy using my shop</b>'
-              }, (err, result) => {
-                if (err) {
-                  console.log(err);
-                } else {
-                  console.log(result);
-                }
-              })
+            mailer.sendMail({
+              to: user.email,
+              from: 'alt.r7-5oj3z2c2@yopmail.com',
+              subject: 'Thank you for signing in my shop',
+              text: 'Thank you for signing in my shop',
+              html: '<b>Enjoy using my shop</b>'
+            }, (err, result) => {
+              if (err) {
+                console.log(err);
+              } else {
+                console.log(result);
+              }
+            })
             return res.redirect('/');
           })
       })
