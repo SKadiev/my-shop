@@ -4,6 +4,7 @@ const { body, validationResult } = require('express-validator');
 const isValidationPassed = require('../utils/isValidationPassed');
 const nodemailer = require('nodemailer');
 const sgTransport = require('nodemailer-sendgrid-transport');
+const { v4: uuidv4 } = require('uuid');
 
 const resetOldInputForm = (req) => {
   req.flash('oldInput', {
@@ -56,6 +57,51 @@ exports.getSignUp = (req, res, next) => {
     validationErrors
   })
 
+};
+
+exports.getForgotPassword = (req, res, next) => {
+  res.render('pages/forgot-password', {
+    title: 'Forgot password'
+  })
+};
+
+
+exports.postForgotPassword = (req, res, next) => {
+  const forgotPasswordToken = uuidv4();
+  mailer.sendMail({
+    to: req.body.email,
+    from: 'alt.r7-5oj3z2c2@yopmail.com',
+    subject: 'Request for password rest',
+    text: 'Click the link the reset password',
+    html: '<a href="' + process.env.APP_URL + '/reset-password/' + forgotPasswordToken + '">Reset Password</a>'
+  }, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      req.session.resetPasswordToken = {forgotPasswordToken};
+      console.log(result);
+    }
+  })
+  return res.redirect('/login');
+};
+
+exports.resetPassword = (req, res, next) => {
+  if (req.params.token !== req.session.resetPasswordToken) {
+    return res.redirect('/');
+  }
+  const errorMsg = req.flash('errorMsg');
+  const oldInput = req.flash('oldInput');
+  const validationErrors = req.flash('validationErrors');
+
+  res.render('pages/reset-password',
+    {
+      title: 'Reset Password ', errorMsg: errorMsg,
+      oldInput: {
+        password: oldInput[0]?.password,
+        confirmPassword: oldInput[0]?.confirmPassword
+      },
+      validationErrors
+    });
 };
 
 exports.postLogout = (req, res, next) => {

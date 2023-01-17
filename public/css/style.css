@@ -92,10 +92,10 @@ section .homePageLogo {
 .auth-div form {
 	display: flex;
 	flex: 0 1 30%;
+	padding: 16px 32px;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	/* background: #087f5b; */
 	margin-top: 1rem;
 	border-radius: 10%;
 	border: 1px solid #087f5b;
@@ -185,6 +185,7 @@ small,
 	font-weight: 500;
 	border-radius: 15px;
 	margin-top: 10px;
+	margin-bottom: 10px;
 	white-space: nowrap;
 	text-align: center;
 	width: 100%;
@@ -215,6 +216,10 @@ ul li {
 	margin: 0.7rem 0.3rem;
 	color: #fff;
 	border-radius: 10%;
+}
+a:link,
+a:hover {
+	text-decoration: none;
 }
 
 .svg-basic {
@@ -303,10 +308,7 @@ section img {
 	align-self: flex-start;
 	justify-self: flex-start;
 	padding: 16px 32px;
-	
 }
-
-
 
 .product-info-card {
 	justify-self: center;
@@ -319,5 +321,8 @@ section img {
 }
 .forgot-password-form {
 	border: none !important;
+}
+.forgot-password-btn, .forgot-password-btn:hover {
+	color: #fff ;
 }
 /* component styles */

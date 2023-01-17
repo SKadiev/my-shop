@@ -24,10 +24,8 @@
                 </div>
             </div>
             <button type="submit" class="login-btn btn">Login</button>
+            <button class="btn"><a class="forgot-password-btn" href="/forgot-password">Forgot password</a></button>
             <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
-        </form>
-        <form class="forgot-password-form" method="post" action="/forgot-password">
-            <button type="submit" class="btn">Forgot password</button>
         </form>
 </div>
 <%- contentFor('styles') %>
