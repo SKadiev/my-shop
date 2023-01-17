@@ -31,7 +31,9 @@
 		"express-mongodb-session": "^3.2.1",
 		"express-session": "^1.17.3",
 		"express-validator": "^6.14.2",
-		"mongoose": "^6.8.2"
+		"mongoose": "^6.8.2",
+		"nodemailer": "^6.9.0",
+		"nodemailer-sendgrid-transport": "^0.2.0"
 	},
 	"devDependencies": {
 		"connect-livereload": "^0.6.1",

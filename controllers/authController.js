@@ -2,11 +2,21 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const { body, validationResult } = require('express-validator');
 const isValidationPassed = require('../utils/isValidationPassed');
+const nodemailer = require('nodemailer');
+const sgTransport = require('nodemailer-sendgrid-transport');
+
 const resetOldInputForm = (req) => {
   req.flash('oldInput', {
     email: '', password: '', confirmPassword: '', name: '', confirmPassword: ''
   })
 };
+
+var mailer = nodemailer.createTransport(sgTransport({
+  auth: {
+    api_key: process.env.MAIL_API_KEY
+  }
+}));
+
 exports.getLogin = (req, res, next) => {
   if (res.isLoggedIn) {
     return res.redirect('/');
@@ -104,7 +114,23 @@ exports.postSignUp = (req, res, next) => {
         user.save()
           .then(user => {
             resetOldInputForm(req);
-            return res.redirect('/');
+            return user;
+          })
+          .then(user => {
+            mailer.sendMail({
+              to: user.email,
+              from: 'alt.ci-5phvhzm@yopmail.com',
+              subject: 'Thank you for signing in my shop',
+              text: 'Thank you for signing in my shop',
+              html: '<b>Enjoy using my shop</b>'
+            }, (err, res) => {
+              if (err) {
+                console.log(err);
+              } else {
+                console.log(res);
+              }
+              return res.redirect('/');
+            })
           })
       })
   } else {
