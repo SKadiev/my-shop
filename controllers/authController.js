@@ -82,11 +82,12 @@ exports.postForgotPassword = (req, res, next) => {
       console.log(result);
     }
   })
-  User.find({ email: req.body.email })
+  User.findOne({ email: req.body.email })
     .then(user => {
       if (user) {
+        console.log(user);
         user.resetPasswordToken = forgotPasswordToken;
-        user.resetPasswordExpiresAt = Date.now() + 3600000;
+        user.resetPasswordTokenExpiration = Date.now() + 3600000;
         user.save();
       }
       return res.redirect('/login');
@@ -98,7 +99,7 @@ exports.postForgotPassword = (req, res, next) => {
 };
 
 exports.resetPassword = (req, res, next) => {
-  User.find({ resetPasswordToken: req.params.token })
+  User.findOne({ resetPasswordToken: req.params.token })
     .then(user => {
       if (user) {
         if (!isResetTokenValid(req, user)) {
@@ -113,8 +114,9 @@ exports.resetPassword = (req, res, next) => {
             title: 'Reset Password ', errorMsg: errorMsg,
             oldInput: {
               password: oldInput[0]?.password,
-              confirmPassword: oldInput[0]?.confirmPassword
+              confirmPassword: oldInput[0]?.confirmPassword,
             },
+            resetPasswordToken: user.resetPasswordToken,
             validationErrors
           });
 
@@ -131,37 +133,37 @@ exports.resetPassword = (req, res, next) => {
 
 exports.resetPostPassword = (req, res, next) => {
   if (isValidationPassed(req)) {
-    bcrypt.hash(req.body.password, 10)
-      .then(hash => {
-        const user = new User({
-          name: req.body.name,
-          password: hash,
-          email: req.body.email,
-        })
-
-        user.save()
-          .then(user => {
+    User.findOne({ resetPasswordToken: req.body.resetPasswordToken })
+      .then(user => {
+        bcrypt.hash(req.body.password, 10)
+          .then(hash => { 
             resetOldInputForm(req);
-            mailer.sendMail({
-              to: user.email,
-              from: 'alt.r7-5oj3z2c2@yopmail.com',
-              subject: 'Thank you for signing in my shop',
-              text: 'Thank you for signing in my shop',
-              html: '<b>Enjoy using my shop</b>'
-            }, (err, result) => {
-              if (err) {
-                console.log(err);
-              } else {
-                console.log(result);
-              }
-            })
-            return res.redirect('/');
+            user.password = hash;
+            user.save()
+              .then(user => {
+                mailer.sendMail({
+                  to: user.email,
+                  from: 'alt.r7-5oj3z2c2@yopmail.com',
+                  subject: 'Password Reset',
+                  text: 'Thank you for signing in my shop',
+                  html: '<h2>Your password was reset</h2>'
+                }, (err, result) => {
+                  if (err) {
+                    console.log(err);
+                  } else {
+                    console.log(result);
+                  }
+                })
+                return res.redirect('/');
+              });
+
           })
+      })
+      .catch(err => {
+        console.log(err);
       })
   } else {
     req.flash('oldInput', {
-      email: req.body.email,
-      name: req.body.name,
       password: req.body.password,
       confirmPassword: req.body.password_confirmation
     });
