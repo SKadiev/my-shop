@@ -1,4 +1,2 @@
 
-module.exports = (req) => {
-  return req.params.token === req.session.resetPasswordToken || Date.now() < req.params.token;
-}
+module.exports = (req, user) => req.params.token === user.resetPasswordToken && Date.now() <= user.resetPasswordExpiresAt;

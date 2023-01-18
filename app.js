@@ -48,7 +48,7 @@ app.use((req, res, next) => {
     return next();
   }
   User.findById(req.session.user._id)
-    .then(user => {
+    .then(user => { 
       req.user = user;
       next();
     })
