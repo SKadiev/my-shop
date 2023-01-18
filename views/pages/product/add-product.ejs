@@ -1,28 +1,46 @@
-<%- include('../../partials/entities-header.ejs') %> 
-<div class="form-crud-container add-product-container">
-  <form class="add-product-form" method="post" action="/admin/add-product">
-    <%- include('../../partials/auth-errors.ejs')%>
-    <div class="form-group">
-        <label for="name">Name</label>
-        <input type="name" class="form-control" name="name" id="name">
-      </div>
-      <div class="form-group">
-        <label for="price">Price</label>
-        <input type="number" class="form-control" name="price" id="price" placeholder="0">
-      </div>
-      <div class="form-group">
-        <label for="serial_number">Serial Number</label>
-        <input type="text" class="form-control" name="serial_number" id="seria_number" placeholder="0">
-      </div>
-      <div class="form-group product-category-select">
-        <label for="price">Product category</label>
-        <select class="product_category" name="product_category">
-          <% productCategories.forEach(category => { %>
-            <option value="<%=category._id %>"> <%= category.name  %> </option>
-          <% }) %>
-        </select>
-      </div>
-      <button type="submit" class="btn btn--big add-product-btn">Add product</button>
-      <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
+<%- include('../../partials/entities-header.ejs') %>
+  <div class="form-crud-container add-product-container">
+    <form class="add-product-form needs-validation" method="post" action="/admin/add-product" novalidate>
+      <%- include('../../partials/auth-errors.ejs')%>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control <%= validationErrors.find(e => e.param ==='name') ? 'is-invalid' : ''%>"
+            name="name" id="name" placeholder="Username" value="<%= oldInput.name %>" required />
+          <div class="invalid-feedback">
+            <% let errorName=validationErrors.find(e=> e.param === 'name') ; %>
+              <%= errorName ? errorName.msg : 'Please choose a  correct name' %>
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="price">Price</label>
+          <input type="number" class="form-control <%= validationErrors.find(e => e.param ==='price') ? 'is-invalid' : ''%>"
+            name="price" id="price" value="<%= oldInput.price %>" required />
+          <div class="invalid-feedback">
+            <% let errorPrice=validationErrors.find(e=> e.param === 'price') ; %>
+              <%= errorPrice ? errorPrice.msg : 'Please choose a  correct price' %>
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="serial_number">Serial Number</label>
+          <input type="number"
+            class="form-control <%= validationErrors.find(e => e.param ==='serial_number') ? 'is-invalid' : ''%>"
+            name="serial_number" id="serial_number value=" <%=oldInput.serial_number %>" required />
+          <div class="invalid-feedback">
+            <% let errorSerial=validationErrors.find(e=> e.param === 'serial_number') ; %>
+              <%= errorSerial ? errorSerial .msg : 'Please choose a  correct serial_number' %>
+          </div>
+          </div>
+          <div class="form-group product-category-select">
+            <label for="price">Product category</label>
+            <select class="product_category" name="product_category">
+            <% productCategories.forEach(category=> { %>
+              <option value="<%=category._id %>">
+                <%= category.name %>
+              </option>
+              <% }) %>
+                </select>
+                </div>
+                <button type="submit" class="btn btn--big add-product-btn">Add product</button>
+                <input type="hidden" name="CSRFToken" value="<%= csrfToken %>">
     </form>
-</div>
+  </div>

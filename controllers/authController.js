@@ -192,8 +192,7 @@ exports.postLogin = (req, res, next) => {
               req.session.isLoggedIn = true;
               resetOldInputForm(req);
               return res.redirect('/');
-
-            } else {
+              validationErrors             } else {
               req.flash('errorMsg', 'Wrong email or password');
               req.flash('oldInput', {
                 email: req.body.email, password: req.body.password, confirmPassword: req.body.confirmPassword

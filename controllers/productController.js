@@ -5,10 +5,20 @@ const isValidationPassed = require('../utils/isValidationPassed');
 exports.getAddProduct = (req, res, next) => {
 
   const errorMsg = req.flash('errorMsg');
+  const validationErrors = req.flash('validationErrors');
+  const oldInput = req.flash('oldInput');
+
   ProductCategory.find()
     .then(productCategories => {
       console.log(productCategories);
-      res.render('pages/product/add-product', { title: 'Add product', errorMsg, productCategories });
+      res.render('pages/product/add-product', {
+        title: 'Add product', errorMsg, productCategories, validationErrors, oldInput: {
+          name: oldInput[0]?.name,
+          price: oldInput[0]?.price,
+          price: oldInput[0]?.price,
+          serial_number: oldInput[0]?.serial_number,
+        },
+      });
     })
     .catch(err => {
       console.log(err);
@@ -17,6 +27,7 @@ exports.getAddProduct = (req, res, next) => {
 
 exports.postAddProduct = (req, res, next) => {
   if (isValidationPassed(req)) {
+
     const product = new Product({
       name: req.body.name,
       price: req.body.price,

@@ -9,7 +9,7 @@ npm install
 ```
 Create copy of the .env.example file and insert your database query string
 ```
-APP_NAME=""
+APP_NAME=""z
 DATABASE=""
 MAIL_API_KEY=""
 ```
