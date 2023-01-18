@@ -11,7 +11,19 @@ router.get('/signup', authController.getSignUp);
 router.get('/forgot-password', authController.getForgotPassword);
 router.post('/forgot-password', authController.postForgotPassword);
 router.get('/reset-password/:token', authController.resetPassword);
-router.post('/reset-password', authController.resetPostPassword);
+router.post('/reset-password',
+  body('password')
+    .notEmpty()
+    .trim()
+    .withMessage('Must supply password'),
+  body('password_confirmation').custom((value, { req }) => {
+    if (value !== req.body.password) {
+      throw new Error('Password confirmation does not match password');
+    }
+
+    // Indicates the success of this synchronous custom validator
+    return true;
+  }).trim(), authController.resetPostPassword);
 
 
 router.post('/login',

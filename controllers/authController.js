@@ -4,7 +4,7 @@ const { body, validationResult } = require('express-validator');
 const isValidationPassed = require('../utils/isValidationPassed');
 const nodemailer = require('nodemailer');
 const sgTransport = require('nodemailer-sendgrid-transport');
-const isResetTokenValid = require('../utils/isResetTokenValid'); 
+const isResetTokenValid = require('../utils/isResetTokenValid');
 const { v4: uuidv4 } = require('uuid');
 
 const resetOldInputForm = (req) => {
@@ -136,7 +136,7 @@ exports.resetPostPassword = (req, res, next) => {
     User.findOne({ resetPasswordToken: req.body.resetPasswordToken })
       .then(user => {
         bcrypt.hash(req.body.password, 10)
-          .then(hash => { 
+          .then(hash => {
             resetOldInputForm(req);
             user.password = hash;
             user.save()
@@ -168,7 +168,7 @@ exports.resetPostPassword = (req, res, next) => {
       confirmPassword: req.body.password_confirmation
     });
 
-    return res.redirect('/signup');
+    return res.redirect('/reset-password/' + req.body.resetPasswordToken);
   }
 };
 
