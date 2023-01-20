@@ -74,8 +74,12 @@ footer {
 	align-content: center;
 }
 
+form {
+}
 #auth-buttons-div a {
 	margin: 0.3rem;
+	box-shadow: 5px 5px 5px #bdb9b9;
+
 }
 
 section .homePageLogo {
@@ -90,6 +94,7 @@ section .homePageLogo {
 }
 
 .auth-div form {
+	box-shadow: 5px 5px 5px #bdb9b9;
 	display: flex;
 	flex: 0 1 30%;
 	padding: 16px 32px;
@@ -112,8 +117,12 @@ section .homePageLogo {
 #main-nav-ul {
 	display: flex;
 	justify-content: center;
+
 }
 
+#main-nav-ul li a {
+	box-shadow: 5px 5px 5px #bdb9b9;
+}
 /* grid utils styles */
 .col-row-2 {
 	display: grid;
@@ -189,6 +198,7 @@ small,
 	white-space: nowrap;
 	text-align: center;
 	width: 100%;
+	box-shadow: 5px 5px 5px #bdb9b9;
 }
 
 .btn--big {
@@ -308,6 +318,7 @@ section img {
 	align-self: flex-start;
 	justify-self: flex-start;
 	padding: 16px 32px;
+	box-shadow: 5px 5px 5px #bdb9b9;
 }
 
 .product-info-card {
@@ -322,7 +333,8 @@ section img {
 .forgot-password-form {
 	border: none !important;
 }
-.forgot-password-btn, .forgot-password-btn:hover {
-	color: #fff ;
+.forgot-password-btn,
+.forgot-password-btn:hover {
+	color: #fff;
 }
 /* component styles */
